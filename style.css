@@ -91,9 +91,9 @@ select {
 }
 
 .hud {
-  flex: 0 0 620px;
-  width: 620px;
-  max-width: 620px;
+  flex: 0 0 500px;
+  width: 500px;
+  max-width: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
@@ -937,7 +937,7 @@ select {
   }
 
   .game-area {
-    height: 760px;
+    height: 700px;
   }
 
   .message-box {
@@ -959,12 +959,12 @@ select {
   }
 
   .difficulty-panel {
-    top: 104px;
+    top: 96px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
     width: calc(100% - 16px);
-    padding: 8px;
+    padding: 6px;
     z-index: 38;
   }
 
@@ -986,7 +986,7 @@ select {
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 166px;
+    top: 146px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 16px);
@@ -1008,7 +1008,7 @@ select {
   .pipe-wrap {
     width: 74%;
     min-width: 0;
-    top: 214px;
+    top: 188px;
   }
 
   .pipe-top {
@@ -1020,9 +1020,9 @@ select {
   }
 
   .sun {
-    top: 200px;
-    width: 66px;
-    height: 66px;
+    top: 178px;
+    width: 60px;
+    height: 60px;
   }
 
   .ocean-band {
