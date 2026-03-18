@@ -1003,7 +1003,7 @@ select {
 
   .difficulty-panel {
     position: absolute;
-    top: 73px;
+    top: 64px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
@@ -1035,7 +1035,7 @@ select {
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 114px;
+    top: 105px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
@@ -1059,7 +1059,7 @@ select {
   .pipe-wrap {
     width: 76%;
     min-width: 0;
-    top: 145px;
+    top: 136px;
   }
 
   .pipe-top {
