@@ -818,7 +818,7 @@ select {
   background: #fff29b;
 }
 
-@media (max-width: 640px) { ... }
+@media (max-width: 1180px) {
   .top-bar {
     flex-wrap: wrap;
   }
@@ -971,14 +971,14 @@ select {
   }
 
   .game-area {
-    height: 810px;
+    height: 860px;
   }
 
   .message-box {
-    top: 6px;
-    left: 114px;
-    right: auto;
-    width: calc(100% - 120px);
+    top: 8px;
+    left: 6px;
+    right: 6px;
+    width: auto;
     max-width: none;
     min-width: 0;
     padding: 6px 6px;
@@ -992,18 +992,18 @@ select {
     left: 6px;
     width: calc(100% - 12px);
     padding: 8px;
-    font-size: 0.62rem;
-    line-height: 1.2;
+    font-size: 0.6rem;
+    line-height: 1.15;
     border-width: 3px;
   }
 
-  /* MOVED UP ABOUT ONE BOX HEIGHT */
   .difficulty-panel {
-    top: 18px;
+    position: absolute;
+    top: 86px;
     left: 50%;
     right: auto;
-    width: min(300px, calc(100% - 12px));
     transform: translateX(-50%);
+    width: min(300px, calc(100% - 12px));
     padding: 6px;
     z-index: 38;
   }
@@ -1026,7 +1026,7 @@ select {
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 68px;
+    top: 128px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
@@ -1050,7 +1050,7 @@ select {
   .pipe-wrap {
     width: 76%;
     min-width: 0;
-    top: 126px;
+    top: 182px;
   }
 
   .pipe-top {
@@ -1062,23 +1062,23 @@ select {
   }
 
   .sun {
-    top: 120px;
+    top: 176px;
     width: 44px;
     height: 44px;
   }
 
   .ocean-band {
-    top: 56%;
+    top: 58%;
   }
 
-  .wave-1 { top: 56%; }
-  .wave-2 { top: 60%; }
-  .wave-3 { top: 64%; }
-  .wave-4 { top: 68%; }
-  .wave-5 { top: 72%; }
+  .wave-1 { top: 58%; }
+  .wave-2 { top: 62%; }
+  .wave-3 { top: 66%; }
+  .wave-4 { top: 70%; }
+  .wave-5 { top: 74%; }
 
   .island {
-    top: 60%;
+    top: 69%;
     width: 114px;
     height: 52px;
     right: 4%;
@@ -1162,10 +1162,10 @@ select {
     height: 9px;
   }
 
-  .fish-1 { top: 74%; }
-  .fish-2 { top: 78%; }
-  .fish-3 { top: 82%; }
-  .fish-4 { top: 86%; }
+  .fish-1 { top: 78%; }
+  .fish-2 { top: 82%; }
+  .fish-3 { top: 86%; }
+  .fish-4 { top: 90%; }
 
   .drop {
     width: 34px;
@@ -1212,7 +1212,7 @@ select {
   }
 
   .level-banner {
-    top: 70px;
+    top: 212px;
     font-size: 0.92rem;
     padding: 8px 10px;
   }
