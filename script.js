@@ -19,7 +19,7 @@ const finalScore = document.getElementById("finalScore");
 const finalPurified = document.getElementById("finalPurified");
 const confettiContainer = document.getElementById("confettiContainer");
 const levelBanner = document.getElementById("levelBanner");
-const reservoir = document.getElementById("reservoir");
+const reservoirFrame = document.getElementById("reservoirFrame");
 const pipeMouth = document.querySelector(".pipe-mouth");
 
 const startBtn = document.getElementById("startBtn");
@@ -122,13 +122,13 @@ function getDropSpeed() {
 function getDropStartY() {
   const mouthRect = pipeMouth.getBoundingClientRect();
   const gameRect = gameArea.getBoundingClientRect();
-  return mouthRect.top - gameRect.top + mouthRect.height - 6;
+  return mouthRect.top - gameRect.top + 2;
 }
 
 function getReservoirCollisionY() {
-  const reservoirRect = reservoir.getBoundingClientRect();
+  const frameRect = reservoirFrame.getBoundingClientRect();
   const gameRect = gameArea.getBoundingClientRect();
-  return reservoirRect.top - gameRect.top + (window.innerWidth <= 640 ? 10 : 12);
+  return frameRect.top - gameRect.top;
 }
 
 function updateDisplays() {
@@ -371,14 +371,14 @@ function handleDropReachedReservoir(dropData) {
 function animateDrops() {
   if (!running || gameOver || levelTransition) return;
 
-  const reservoirTop = getReservoirCollisionY();
+  const collisionY = getReservoirCollisionY();
 
   for (let i = drops.length - 1; i >= 0; i--) {
     const drop = drops[i];
     drop.y += drop.speed;
     drop.element.style.top = `${drop.y}px`;
 
-    if (drop.y + drop.element.offsetHeight >= reservoirTop) {
+    if (drop.y + drop.element.offsetHeight >= collisionY) {
       handleDropReachedReservoir(drop);
     }
   }
@@ -658,15 +658,15 @@ function playSplashSound() {
   bandpass.Q.value = 0.75;
 
   const gain = audioCtx.createGain();
-  gain.gain.setValueAtTime(0.24, now);
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.33);
+  gain.gain.setValueAtTime(0.24, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.33);
 
   noiseSource.connect(bandpass);
   bandpass.connect(gain);
   gain.connect(masterGain);
 
-  noiseSource.start(now);
-  noiseSource.stop(now + 0.35);
+  noiseSource.start(audioCtx.currentTime);
+  noiseSource.stop(audioCtx.currentTime + 0.35);
 
   playTone("triangle", 420, 0.18, 0.05, 150);
 }
