@@ -1022,10 +1022,11 @@ select {
     font-size: 0.54rem;
   }
 
+  /* FIXED MOBILE OVERLAP */
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 114px;
+    top: 126px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
@@ -1049,7 +1050,7 @@ select {
   .pipe-wrap {
     width: 76%;
     min-width: 0;
-    top: 154px;
+    top: 170px;
   }
 
   .pipe-top {
@@ -1061,7 +1062,7 @@ select {
   }
 
   .sun {
-    top: 148px;
+    top: 164px;
     width: 44px;
     height: 44px;
   }
