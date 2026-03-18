@@ -192,7 +192,7 @@ select {
 .game-area {
   position: relative;
   width: 100%;
-  height: 1100px;
+  height: 1120px;
   overflow: hidden;
   border-top: 3px solid rgba(255, 255, 255, 0.55);
   background: linear-gradient(to bottom, #ffdce7 0%, #f5bfd9 22%, #d3d8eb 44%, #88c0ea 56%, #3f97dc 100%);
@@ -317,7 +317,7 @@ select {
 
 .pipe-wrap {
   position: absolute;
-  top: 78px;
+  top: 56px;
   left: 50%;
   transform: translateX(-50%);
   width: min(52%, 680px);
@@ -360,7 +360,7 @@ select {
 .sun {
   position: absolute;
   right: 8%;
-  top: 126px;
+  top: 110px;
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -631,7 +631,7 @@ select {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 8px;
+  bottom: 6px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -872,112 +872,139 @@ select {
 
 @media (max-width: 640px) {
   .top-bar {
-    padding: 8px 8px 6px;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    grid-template-areas:
+      "brand hud"
+      "brand instruction";
+    gap: 6px;
+    padding: 6px;
+    align-items: start;
   }
 
   .brand-box {
-    padding: 8px 10px;
+    grid-area: brand;
+    width: 112px;
+    max-width: 112px;
+    min-width: 112px;
+    padding: 6px;
+    border-width: 3px;
   }
 
   .brand-row {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
   }
 
   .logo-wrap {
-    width: 62px;
-    height: 62px;
+    width: 52px;
+    height: 52px;
+    border-width: 2px;
   }
 
   .logo-svg {
-    width: 46px;
-    height: 46px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-text {
+    width: 100%;
+    text-align: center;
   }
 
   .brand-title {
-    font-size: 1.18rem;
+    font-size: 0.76rem;
+    line-height: 1.1;
+    letter-spacing: 0.2px;
   }
 
   .brand-subtitle {
-    margin-top: 2px;
-    font-size: 0.62rem;
+    margin-top: 3px;
+    font-size: 0.47rem;
+    line-height: 1.15;
   }
 
   .hud {
-    grid-template-columns: 1fr 1fr;
+    grid-area: hud;
     width: 100%;
     max-width: 100%;
-    gap: 6px;
+    min-width: 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
   }
 
   .hud-box {
     min-height: 58px;
-    padding: 6px 8px;
+    padding: 4px 4px;
+    border-width: 3px;
   }
 
   .hud-label {
-    font-size: 0.68rem;
+    font-size: 0.56rem;
   }
 
   .hud-value {
-    margin-top: 4px;
-    font-size: 1.1rem;
+    margin-top: 3px;
+    font-size: 0.9rem;
   }
 
   .glasses {
-    margin-top: 4px;
-    gap: 4px;
+    margin-top: 3px;
+    gap: 3px;
   }
 
   .glass {
-    width: 16px;
-    height: 24px;
+    width: 13px;
+    height: 20px;
   }
 
   .instruction-panel {
-    width: calc(100% - 12px);
-    margin: 0 0 6px 6px;
-    padding: 7px 8px;
-    font-size: 0.68rem;
+    grid-area: instruction;
+    width: 100%;
+    margin: 0;
+    padding: 6px 7px;
+    font-size: 0.58rem;
     line-height: 1.15;
+    border-width: 3px;
   }
 
   .game-area {
-    height: 720px;
+    height: 760px;
   }
 
   .message-box {
-    width: calc(100% - 12px);
-    left: 6px;
     top: 6px;
-    padding: 7px 8px;
-    font-size: 0.68rem;
+    left: 122px;
+    width: calc(100% - 128px);
+    padding: 6px 7px;
+    font-size: 0.58rem;
     line-height: 1.15;
+    border-width: 3px;
   }
 
   .milestone-box {
-    top: 48px;
+    top: 42px;
     left: 6px;
     width: calc(100% - 12px);
-    font-size: 0.65rem;
     padding: 8px;
+    font-size: 0.62rem;
     line-height: 1.2;
+    border-width: 3px;
   }
 
   .difficulty-panel {
-    top: 92px;
+    top: 74px;
     left: 6px;
     right: 6px;
-    transform: none;
     width: auto;
+    transform: none;
     padding: 6px;
     z-index: 38;
   }
 
   .difficulty-label {
-    font-size: 0.72rem;
+    font-size: 0.66rem;
     margin-bottom: 4px;
   }
 
@@ -988,17 +1015,17 @@ select {
 
   .difficulty-btn {
     padding: 7px 2px;
-    font-size: 0.62rem;
+    font-size: 0.58rem;
   }
 
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 152px;
+    top: 122px;
     left: 6px;
     right: 6px;
-    transform: none;
     width: auto;
+    transform: none;
     gap: 4px;
     z-index: 39;
   }
@@ -1007,7 +1034,7 @@ select {
     flex: 1;
     min-width: 0;
     padding: 7px 2px;
-    font-size: 0.62rem;
+    font-size: 0.58rem;
   }
 
   .desktop-controls {
@@ -1015,23 +1042,23 @@ select {
   }
 
   .pipe-wrap {
-    width: 74%;
+    width: 76%;
     min-width: 0;
-    top: 178px;
+    top: 146px;
   }
 
   .pipe-top {
-    height: 24px;
+    height: 22px;
   }
 
   .pipe-mouth {
-    height: 20px;
+    height: 18px;
   }
 
   .sun {
-    top: 168px;
-    width: 54px;
-    height: 54px;
+    top: 144px;
+    width: 48px;
+    height: 48px;
   }
 
   .ocean-band {
@@ -1175,13 +1202,13 @@ select {
   }
 
   .water-system {
-    bottom: 6px;
+    bottom: 4px;
   }
 
   .level-banner {
-    top: 74px;
-    font-size: 0.95rem;
-    padding: 10px 12px;
+    top: 70px;
+    font-size: 0.92rem;
+    padding: 8px 10px;
   }
 
   .bottom-info {
