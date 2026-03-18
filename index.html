@@ -54,7 +54,7 @@
 
         <div class="hud-box hud-pollution">
           <div class="hud-label">POLLUTION IN TANK</div>
-          <div id="dirtyTankDisplay" class="hud-value">0 / 4</div>
+          <div id="dirtyTankDisplay" class="hud-value">0 / 5</div>
         </div>
       </div>
     </header>
@@ -65,19 +65,10 @@
 
     <main id="gameArea" class="game-area">
       <div id="messageBox" class="message-box">
-        Select a difficulty, then press START to protect the reservoir.
+        Protect the reservoir and keep polluted water out.
       </div>
 
       <div id="milestoneBox" class="milestone-box hidden"></div>
-
-      <div class="difficulty-panel">
-        <div class="difficulty-label">DIFFICULTY MODE</div>
-        <div class="difficulty-buttons">
-          <button id="easyBtn" class="difficulty-btn active" type="button" data-mode="easy">EASY</button>
-          <button id="normalBtn" class="difficulty-btn" type="button" data-mode="normal">NORMAL</button>
-          <button id="hardBtn" class="difficulty-btn" type="button" data-mode="hard">HARD</button>
-        </div>
-      </div>
 
       <div class="desktop-controls">
         <button id="desktopStartBtn" class="control-btn start-btn" type="button">START</button>
@@ -89,6 +80,15 @@
         <button id="startBtn" class="control-btn start-btn" type="button">START</button>
         <button id="pauseBtn" class="control-btn pause-btn" type="button">PAUSE</button>
         <button id="resetBtn" class="control-btn reset-btn" type="button">RESET</button>
+      </div>
+
+      <div class="difficulty-panel">
+        <div class="difficulty-label">DIFFICULTY MODE</div>
+        <div class="difficulty-buttons">
+          <button id="easyBtn" class="difficulty-btn active" type="button" data-mode="easy">EASY</button>
+          <button id="normalBtn" class="difficulty-btn" type="button" data-mode="normal">NORMAL</button>
+          <button id="hardBtn" class="difficulty-btn" type="button" data-mode="hard">HARD</button>
+        </div>
       </div>
 
       <div class="pipe-wrap">
@@ -169,9 +169,9 @@
         </div>
 
         <div class="center-system">
-          <div class="reservoir-fill-frame">
+          <div id="reservoirFrame" class="reservoir-fill-frame">
             <div id="reservoirFill" class="reservoir-fill"></div>
-            <div id="reservoirFillText" class="reservoir-fill-text">Reservoir Fill: 0 / 12</div>
+            <div id="reservoirFillText" class="reservoir-fill-text">Reservoir Fill: 0 / 10</div>
           </div>
 
           <div id="reservoir" class="reservoir">
@@ -201,7 +201,7 @@
 
     <footer class="bottom-info">
       <div class="info-box">EASY, NORMAL, AND HARD change speed, pollution rate, lives, and reservoir goals.</div>
-      <div class="info-box">Clicking a green polluted drop gives +100 points, a loud splash sound, and confetti at that exact drop.</div>
+      <div class="info-box">Clicking a green polluted drop gives +100 points, a splash sound, and confetti at that drop.</div>
       <div class="info-box">Each cleared level fills the side tanks by 1/8. Filling both tanks completes the mission.</div>
     </footer>
 
