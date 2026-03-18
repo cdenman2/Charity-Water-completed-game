@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHARITY: WATER GAME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="top-bar">
+      <div class="brand-box">
+        <div class="brand-row">
+          <div class="logo-wrap" aria-label="Charity: Water logo">
+            <svg viewBox="0 0 140 140" class="logo-svg" role="img" aria-hidden="true">
+              <rect x="22" y="28" width="62" height="78" rx="7" fill="#FFC907" stroke="#111" stroke-width="5"></rect>
+              <rect x="47" y="14" width="22" height="18" rx="3" fill="#FFC907" stroke="#111" stroke-width="5"></rect>
+              <line x1="36" y1="50" x2="70" y2="50" stroke="#111" stroke-width="6" stroke-linecap="round"></line>
+              <line x1="36" y1="66" x2="70" y2="66" stroke="#111" stroke-width="6" stroke-linecap="round"></line>
+              <line x1="36" y1="82" x2="62" y2="82" stroke="#111" stroke-width="6" stroke-linecap="round"></line>
+              <path d="M102 82 C102 68,118 58,118 45 C118 58,134 68,134 82 C134 96,123 106,118 106 C113 106,102 96,102 82 Z"
+                    fill="#2FB6DA" stroke="#111" stroke-width="5"></path>
+            </svg>
+          </div>
+
+          <div class="brand-text">
+            <div class="brand-title">CHARITY: WATER</div>
+            <div class="brand-subtitle">CLEANING OUR WAY FOR THE FUTURE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud">
+        <div class="hud-box hud-lives">
+          <div class="hud-label">LIVES</div>
+          <div id="livesDisplay" class="glasses"></div>
+        </div>
+
+        <div class="hud-box hud-level">
+          <div class="hud-label">LEVEL</div>
+          <div id="levelDisplay" class="hud-value">1</div>
+        </div>
+
+        <div class="hud-box hud-score">
+          <div class="hud-label">SCORE</div>
+          <div id="scoreDisplay" class="hud-value">0</div>
+        </div>
+
+        <div class="hud-box hud-pollution">
+          <div class="hud-label">POLLUTION IN TANK</div>
+          <div id="dirtyTankDisplay" class="hud-value">0 / 4</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="instruction-panel">
+      CLICK GREEN POLLUTED WATER DROPS BEFORE THEY ENTER THE RESERVOIR
+    </section>
+
+    <main id="gameArea" class="game-area">
+      <div id="messageBox" class="message-box">
+        Select a difficulty, then press START to protect the reservoir.
+      </div>
+
+      <div id="milestoneBox" class="milestone-box hidden"></div>
+
+      <div class="difficulty-panel">
+        <div class="difficulty-label">DIFFICULTY MODE</div>
+        <div class="difficulty-buttons">
+          <button id="easyBtn" class="difficulty-btn active" type="button" data-mode="easy">EASY</button>
+          <button id="normalBtn" class="difficulty-btn" type="button" data-mode="normal">NORMAL</button>
+          <button id="hardBtn" class="difficulty-btn" type="button" data-mode="hard">HARD</button>
+        </div>
+      </div>
+
+      <div class="desktop-controls">
+        <button id="desktopStartBtn" class="control-btn start-btn" type="button">START</button>
+        <button id="desktopPauseBtn" class="control-btn pause-btn" type="button">PAUSE</button>
+        <button id="desktopResetBtn" class="control-btn reset-btn" type="button">RESET</button>
+      </div>
+
+      <div class="mobile-controls">
+        <button id="startBtn" class="control-btn start-btn" type="button">START</button>
+        <button id="pauseBtn" class="control-btn pause-btn" type="button">PAUSE</button>
+        <button id="resetBtn" class="control-btn reset-btn" type="button">RESET</button>
+      </div>
+
+      <div class="pipe-wrap">
+        <div class="pipe-top"></div>
+        <div class="pipe-mouth"></div>
+      </div>
+
+      <div class="scene">
+        <div class="sun"></div>
+
+        <div class="sky-band"></div>
+        <div class="ocean-band"></div>
+
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+        <div class="wave wave-4"></div>
+        <div class="wave wave-5"></div>
+
+        <div class="island">
+          <div class="palm-trunk"></div>
+          <div class="leaf leaf-1"></div>
+          <div class="leaf leaf-2"></div>
+          <div class="leaf leaf-3"></div>
+          <div class="leaf leaf-4"></div>
+          <div class="leaf leaf-5"></div>
+        </div>
+
+        <div class="clownfish fish-1">
+          <div class="fish-tail tail-top"></div>
+          <div class="fish-tail tail-bottom"></div>
+          <div class="fish-body"></div>
+          <div class="fish-stripe stripe-1"></div>
+          <div class="fish-stripe stripe-2"></div>
+          <div class="fish-eye"></div>
+          <div class="fish-fin"></div>
+        </div>
+
+        <div class="clownfish fish-2">
+          <div class="fish-tail tail-top"></div>
+          <div class="fish-tail tail-bottom"></div>
+          <div class="fish-body"></div>
+          <div class="fish-stripe stripe-1"></div>
+          <div class="fish-stripe stripe-2"></div>
+          <div class="fish-eye"></div>
+          <div class="fish-fin"></div>
+        </div>
+
+        <div class="clownfish fish-3">
+          <div class="fish-tail tail-top"></div>
+          <div class="fish-tail tail-bottom"></div>
+          <div class="fish-body"></div>
+          <div class="fish-stripe stripe-1"></div>
+          <div class="fish-stripe stripe-2"></div>
+          <div class="fish-eye"></div>
+          <div class="fish-fin"></div>
+        </div>
+
+        <div class="clownfish fish-4">
+          <div class="fish-tail tail-top"></div>
+          <div class="fish-tail tail-bottom"></div>
+          <div class="fish-body"></div>
+          <div class="fish-stripe stripe-1"></div>
+          <div class="fish-stripe stripe-2"></div>
+          <div class="fish-eye"></div>
+          <div class="fish-fin"></div>
+        </div>
+      </div>
+
+      <div id="dropsContainer"></div>
+      <div id="confettiContainer" class="confetti-layer"></div>
+      <div id="levelBanner" class="level-banner hidden">LEVEL CLEARED!</div>
+
+      <div class="water-system">
+        <div class="side-water left-water">
+          <div id="leftDrinkFill" class="side-water-fill"></div>
+          <div class="side-water-label">DRINKABLE WATER</div>
+        </div>
+
+        <div class="center-system">
+          <div class="reservoir-fill-frame">
+            <div id="reservoirFill" class="reservoir-fill"></div>
+            <div id="reservoirFillText" class="reservoir-fill-text">Reservoir Fill: 0 / 12</div>
+          </div>
+
+          <div id="reservoir" class="reservoir">
+            RESERVOIR OF CLEAN WATER
+          </div>
+        </div>
+
+        <div class="side-water right-water">
+          <div id="rightDrinkFill" class="side-water-fill"></div>
+          <div class="side-water-label">DRINKABLE WATER</div>
+        </div>
+      </div>
+
+      <div id="gameOverPanel" class="game-over hidden">
+        <div class="game-over-card">
+          <h2 id="endPanelTitle">GAME OVER</h2>
+          <p id="endPanelMessage">Too much pollution reached the reservoir.</p>
+          <p><strong>Difficulty:</strong> <span id="finalDifficulty">Easy</span></p>
+          <p><strong>Lives Left:</strong> <span id="finalLives">0</span></p>
+          <p><strong>Pollution In Tank:</strong> <span id="finalDirty">0</span></p>
+          <p><strong>Final Score:</strong> <span id="finalScore">0</span></p>
+          <p><strong>Polluted Drops Cleaned:</strong> <span id="finalPurified">0</span></p>
+          <button id="playAgainBtn" class="play-again-btn" type="button">PLAY AGAIN</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bottom-info">
+      <div class="info-box">EASY, NORMAL, AND HARD change speed, pollution rate, lives, and reservoir goals.</div>
+      <div class="info-box">Clicking a green polluted drop gives +100 points, a loud splash sound, and confetti at that exact drop.</div>
+      <div class="info-box">Each cleared level fills the side tanks by 1/8. Filling both tanks completes the mission.</div>
+    </footer>
+
+    <section class="charity-footer">
+      <h3>Support charity: water</h3>
+      <p>
+        This game is inspired by the mission to bring clean and safe drinking water to people in need.
+      </p>
+      <div class="charity-links">
+        <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer">Visit charity: water</a>
+        <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer">Donate to charity: water</a>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
