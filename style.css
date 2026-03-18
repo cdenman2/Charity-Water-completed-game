@@ -39,29 +39,29 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  gap: 18px;
-  padding: 16px 18px 10px;
+  gap: 16px;
+  padding: 12px 16px 8px;
   flex-wrap: nowrap;
 }
 
 .brand-box {
-  flex: 0 1 700px;
-  max-width: 700px;
+  flex: 0 1 560px;
+  max-width: 560px;
   background: var(--brand-blue);
   border: 5px solid #118cc5;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
-  padding: 16px 18px;
+  padding: 10px 14px;
 }
 
 .brand-row {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
 }
 
 .logo-wrap {
-  width: 132px;
-  height: 132px;
+  width: 104px;
+  height: 104px;
   flex-shrink: 0;
   background: #fff;
   border: 4px solid #118cc5;
@@ -71,39 +71,39 @@ select {
 }
 
 .logo-svg {
-  width: 106px;
-  height: 106px;
+  width: 82px;
+  height: 82px;
 }
 
 .brand-title {
   color: #07141d;
-  font-size: 3rem;
+  font-size: 2.45rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 1px;
 }
 
 .brand-subtitle {
-  margin-top: 10px;
+  margin-top: 6px;
   color: #07141d;
-  font-size: 1.18rem;
+  font-size: 1rem;
   font-weight: 800;
 }
 
 .hud {
-  flex: 0 0 500px;
-  width: 500px;
-  max-width: 500px;
+  flex: 0 0 440px;
+  width: 440px;
+  max-width: 440px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   align-content: start;
 }
 
 .hud-box {
   min-height: 72px;
   border: 4px solid var(--hud-border);
-  padding: 8px 12px;
+  padding: 8px 10px;
   text-align: center;
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08);
 }
@@ -129,14 +129,14 @@ select {
 }
 
 .hud-label {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 900;
   line-height: 1.1;
 }
 
 .hud-value {
   margin-top: 6px;
-  font-size: 1.7rem;
+  font-size: 1.55rem;
   font-weight: 900;
 }
 
@@ -178,9 +178,9 @@ select {
 }
 
 .instruction-panel {
-  width: min(980px, calc(100% - 24px));
-  margin: 0 auto 12px;
-  padding: 14px 18px;
+  width: min(560px, calc(100% - 30px));
+  margin: 0 0 10px 16px;
+  padding: 12px 16px;
   background: var(--yellow);
   color: #111;
   border: 4px solid #1e8fff;
@@ -192,7 +192,7 @@ select {
 .game-area {
   position: relative;
   width: 100%;
-  height: 1040px;
+  height: 1100px;
   overflow: hidden;
   border-top: 3px solid rgba(255, 255, 255, 0.55);
   background: linear-gradient(to bottom, #ffdce7 0%, #f5bfd9 22%, #d3d8eb 44%, #88c0ea 56%, #3f97dc 100%);
@@ -201,9 +201,9 @@ select {
 .message-box {
   position: absolute;
   top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(760px, calc(100% - 220px));
+  left: 16px;
+  transform: none;
+  width: min(520px, calc(100% - 230px));
   padding: 12px 16px;
   background: var(--yellow);
   color: #111;
@@ -223,10 +223,10 @@ select {
 
 .milestone-box {
   position: absolute;
-  top: 88px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(960px, calc(100% - 36px));
+  top: 86px;
+  left: 16px;
+  transform: none;
+  width: min(620px, calc(100% - 40px));
   padding: 16px 20px;
   background: rgba(255, 201, 7, 0.96);
   color: #111;
@@ -242,7 +242,7 @@ select {
 .difficulty-panel {
   position: absolute;
   right: 18px;
-  top: 150px;
+  top: 116px;
   width: 250px;
   background: rgba(16, 24, 32, 0.84);
   border: 4px solid #ffd400;
@@ -280,7 +280,7 @@ select {
 .desktop-controls {
   position: absolute;
   left: 16px;
-  top: 190px;
+  top: 168px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -317,7 +317,7 @@ select {
 
 .pipe-wrap {
   position: absolute;
-  top: 120px;
+  top: 78px;
   left: 50%;
   transform: translateX(-50%);
   width: min(52%, 680px);
@@ -360,9 +360,9 @@ select {
 .sun {
   position: absolute;
   right: 8%;
-  top: 170px;
-  width: 120px;
-  height: 120px;
+  top: 126px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   background: #fff200;
   box-shadow: 0 0 25px rgba(255, 242, 0, 0.35);
@@ -631,7 +631,7 @@ select {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 24px;
+  bottom: 8px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -839,14 +839,14 @@ select {
 
   .difficulty-panel {
     right: 14px;
-    top: 156px;
+    top: 126px;
   }
 }
 
 @media (max-width: 860px) {
   .difficulty-panel {
     position: absolute;
-    top: 136px;
+    top: 114px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -858,50 +858,58 @@ select {
   }
 
   .desktop-controls {
-    top: 240px;
+    top: 170px;
+  }
+
+  .message-box {
+    width: min(460px, calc(100% - 34px));
+  }
+
+  .milestone-box {
+    width: min(560px, calc(100% - 34px));
   }
 }
 
 @media (max-width: 640px) {
   .top-bar {
-    padding: 10px 10px 8px;
-    gap: 10px;
+    padding: 8px 8px 6px;
+    gap: 8px;
   }
 
   .brand-box {
-    padding: 10px 12px;
+    padding: 8px 10px;
   }
 
   .brand-row {
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .logo-wrap {
-    width: 74px;
-    height: 74px;
+    width: 62px;
+    height: 62px;
   }
 
   .logo-svg {
-    width: 56px;
-    height: 56px;
+    width: 46px;
+    height: 46px;
   }
 
   .brand-title {
-    font-size: 1.45rem;
+    font-size: 1.18rem;
   }
 
   .brand-subtitle {
-    margin-top: 4px;
-    font-size: 0.72rem;
+    margin-top: 2px;
+    font-size: 0.62rem;
   }
 
   .hud {
     grid-template-columns: 1fr 1fr;
     width: 100%;
     max-width: 100%;
-    gap: 8px;
+    gap: 6px;
   }
 
   .hud-box {
@@ -910,12 +918,12 @@ select {
   }
 
   .hud-label {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
   }
 
   .hud-value {
     margin-top: 4px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .glasses {
@@ -929,76 +937,77 @@ select {
   }
 
   .instruction-panel {
-    width: calc(100% - 16px);
-    margin: 0 auto 6px;
-    padding: 8px 10px;
-    font-size: 0.74rem;
-    line-height: 1.2;
+    width: calc(100% - 12px);
+    margin: 0 0 6px 6px;
+    padding: 7px 8px;
+    font-size: 0.68rem;
+    line-height: 1.15;
   }
 
   .game-area {
-    height: 700px;
+    height: 720px;
   }
 
   .message-box {
-    width: calc(100% - 16px);
-    left: 8px;
-    transform: none;
-    top: 8px;
-    padding: 8px 10px;
-    font-size: 0.72rem;
-    line-height: 1.2;
+    width: calc(100% - 12px);
+    left: 6px;
+    top: 6px;
+    padding: 7px 8px;
+    font-size: 0.68rem;
+    line-height: 1.15;
   }
 
   .milestone-box {
-    top: 54px;
-    width: calc(100% - 16px);
-    font-size: 0.7rem;
-    padding: 10px;
-    line-height: 1.25;
+    top: 48px;
+    left: 6px;
+    width: calc(100% - 12px);
+    font-size: 0.65rem;
+    padding: 8px;
+    line-height: 1.2;
   }
 
   .difficulty-panel {
-    top: 96px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    width: calc(100% - 16px);
+    top: 92px;
+    left: 6px;
+    right: 6px;
+    transform: none;
+    width: auto;
     padding: 6px;
     z-index: 38;
   }
 
   .difficulty-label {
-    font-size: 0.78rem;
-    margin-bottom: 6px;
+    font-size: 0.72rem;
+    margin-bottom: 4px;
   }
 
   .difficulty-buttons {
     grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
+    gap: 4px;
   }
 
   .difficulty-btn {
-    padding: 8px 4px;
-    font-size: 0.7rem;
+    padding: 7px 2px;
+    font-size: 0.62rem;
   }
 
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 146px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 16px);
-    gap: 6px;
+    top: 152px;
+    left: 6px;
+    right: 6px;
+    transform: none;
+    width: auto;
+    gap: 4px;
     z-index: 39;
   }
 
   .mobile-controls .control-btn {
     flex: 1;
     min-width: 0;
-    padding: 8px 4px;
-    font-size: 0.7rem;
+    padding: 7px 2px;
+    font-size: 0.62rem;
   }
 
   .desktop-controls {
@@ -1008,21 +1017,21 @@ select {
   .pipe-wrap {
     width: 74%;
     min-width: 0;
-    top: 188px;
+    top: 178px;
   }
 
   .pipe-top {
-    height: 26px;
+    height: 24px;
   }
 
   .pipe-mouth {
-    height: 22px;
+    height: 20px;
   }
 
   .sun {
-    top: 178px;
-    width: 60px;
-    height: 60px;
+    top: 168px;
+    width: 54px;
+    height: 54px;
   }
 
   .ocean-band {
@@ -1037,51 +1046,51 @@ select {
 
   .island {
     top: 60%;
-    width: 120px;
-    height: 56px;
+    width: 114px;
+    height: 52px;
     right: 4%;
   }
 
   .palm-trunk {
-    left: 56px;
-    bottom: 24px;
+    left: 52px;
+    bottom: 22px;
     width: 5px;
-    height: 44px;
+    height: 40px;
   }
 
   .leaf {
-    width: 28px;
-    height: 10px;
+    width: 26px;
+    height: 9px;
   }
 
-  .leaf-1 { left: 32px; bottom: 58px; transform: rotate(-36deg); }
-  .leaf-2 { left: 48px; bottom: 66px; transform: rotate(-8deg); }
-  .leaf-3 { left: 62px; bottom: 63px; transform: rotate(22deg); }
-  .leaf-4 { left: 68px; bottom: 53px; transform: rotate(48deg); }
-  .leaf-5 { left: 24px; bottom: 48px; transform: rotate(-58deg); }
+  .leaf-1 { left: 30px; bottom: 54px; transform: rotate(-36deg); }
+  .leaf-2 { left: 44px; bottom: 61px; transform: rotate(-8deg); }
+  .leaf-3 { left: 58px; bottom: 58px; transform: rotate(22deg); }
+  .leaf-4 { left: 64px; bottom: 49px; transform: rotate(48deg); }
+  .leaf-5 { left: 22px; bottom: 45px; transform: rotate(-58deg); }
 
   .clownfish {
-    width: 62px;
-    height: 28px;
+    width: 58px;
+    height: 26px;
   }
 
   .fish-body {
     left: 10px;
     top: 6px;
-    width: 38px;
-    height: 16px;
+    width: 34px;
+    height: 14px;
   }
 
   .fish-body::after {
-    right: -10px;
+    right: -9px;
     top: 2px;
-    width: 14px;
-    height: 10px;
+    width: 12px;
+    height: 9px;
   }
 
   .fish-tail {
-    width: 12px;
-    height: 8px;
+    width: 11px;
+    height: 7px;
   }
 
   .tail-top {
@@ -1089,35 +1098,35 @@ select {
   }
 
   .tail-bottom {
-    top: 14px;
+    top: 13px;
   }
 
   .fish-stripe {
     top: 6px;
-    width: 7px;
-    height: 16px;
+    width: 6px;
+    height: 14px;
   }
 
   .stripe-1 {
-    left: 16px;
+    left: 15px;
   }
 
   .stripe-2 {
-    left: 28px;
+    left: 26px;
   }
 
   .fish-eye {
-    right: 11px;
-    top: 11px;
+    right: 10px;
+    top: 10px;
     width: 4px;
     height: 4px;
   }
 
   .fish-fin {
-    left: 28px;
+    left: 25px;
     top: 0;
-    width: 11px;
-    height: 10px;
+    width: 10px;
+    height: 9px;
   }
 
   .fish-1 { top: 74%; }
@@ -1156,22 +1165,22 @@ select {
 
   .reservoir-fill-text {
     top: 6px;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
   }
 
   .reservoir {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     height: 78px;
     padding: 6px;
   }
 
   .water-system {
-    bottom: 8px;
+    bottom: 6px;
   }
 
   .level-banner {
-    top: 78px;
-    font-size: 1rem;
+    top: 74px;
+    font-size: 0.95rem;
     padding: 10px 12px;
   }
 
