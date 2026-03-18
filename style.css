@@ -874,7 +874,7 @@ select {
 @media (max-width: 640px) {
   .top-bar {
     display: grid;
-    grid-template-columns: 108px 1fr;
+    grid-template-columns: 96px minmax(0, 1fr);
     grid-template-areas:
       "brand hud"
       "brand instruction";
@@ -885,9 +885,9 @@ select {
 
   .brand-box {
     grid-area: brand;
-    width: 108px;
-    max-width: 108px;
-    min-width: 108px;
+    width: 96px;
+    max-width: 96px;
+    min-width: 96px;
     padding: 5px;
     border-width: 3px;
   }
@@ -899,14 +899,14 @@ select {
   }
 
   .logo-wrap {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-width: 2px;
   }
 
   .logo-svg {
-    width: 37px;
-    height: 37px;
+    width: 34px;
+    height: 34px;
   }
 
   .brand-text {
@@ -915,39 +915,41 @@ select {
   }
 
   .brand-title {
-    font-size: 0.7rem;
+    font-size: 0.62rem;
     line-height: 1.1;
     letter-spacing: 0.1px;
   }
 
   .brand-subtitle {
     margin-top: 2px;
-    font-size: 0.42rem;
+    font-size: 0.39rem;
     line-height: 1.1;
   }
 
   .hud {
     grid-area: hud;
     width: 100%;
-    max-width: 100%;
+    max-width: 320px;
     min-width: 0;
+    justify-self: end;
     grid-template-columns: 1fr 1fr;
     gap: 4px;
   }
 
   .hud-box {
-    min-height: 58px;
+    min-height: 54px;
     padding: 4px 2px;
     border-width: 3px;
   }
 
   .hud-label {
-    font-size: 0.48rem;
+    font-size: 0.44rem;
+    line-height: 1.05;
   }
 
   .hud-value {
     margin-top: 3px;
-    font-size: 0.8rem;
+    font-size: 0.74rem;
   }
 
   .glasses {
@@ -956,8 +958,8 @@ select {
   }
 
   .glass {
-    width: 11px;
-    height: 18px;
+    width: 10px;
+    height: 16px;
   }
 
   .instruction-panel {
@@ -965,7 +967,7 @@ select {
     width: 100%;
     margin: 0;
     padding: 6px 6px;
-    font-size: 0.52rem;
+    font-size: 0.5rem;
     line-height: 1.1;
     border-width: 3px;
   }
@@ -976,40 +978,42 @@ select {
 
   .message-box {
     top: 6px;
-    left: 114px;
-    right: auto;
-    width: calc(100% - 120px);
+    left: 102px;
+    right: 6px;
+    width: auto;
     max-width: none;
     min-width: 0;
-    padding: 6px 6px;
-    font-size: 0.52rem;
-    line-height: 1.1;
+    padding: 5px 6px;
+    font-size: 0.5rem;
+    line-height: 1.05;
     border-width: 3px;
   }
 
   .milestone-box {
     top: 42px;
-    left: 6px;
-    width: calc(100% - 12px);
-    padding: 8px;
-    font-size: 0.62rem;
-    line-height: 1.2;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(300px, calc(100% - 12px));
+    padding: 6px 8px;
+    font-size: 0.54rem;
+    line-height: 1.08;
     border-width: 3px;
+    z-index: 42;
   }
 
   .difficulty-panel {
-    top: -26px;
+    position: absolute;
+    top: 73px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
     transform: translateX(-50%);
-    padding: 6px;
+    padding: 4px;
     z-index: 38;
   }
 
   .difficulty-label {
-    font-size: 0.58rem;
-    margin-bottom: 4px;
+    display: none;
   }
 
   .difficulty-buttons {
@@ -1018,14 +1022,14 @@ select {
   }
 
   .difficulty-btn {
-    padding: 7px 2px;
+    padding: 6px 2px;
     font-size: 0.54rem;
   }
 
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 68px;
+    top: 108px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
@@ -1038,7 +1042,7 @@ select {
   .mobile-controls .control-btn {
     flex: 1;
     min-width: 0;
-    padding: 7px 2px;
+    padding: 6px 2px;
     font-size: 0.54rem;
   }
 
@@ -1049,7 +1053,7 @@ select {
   .pipe-wrap {
     width: 76%;
     min-width: 0;
-    top: 126px;
+    top: 139px;
   }
 
   .pipe-top {
