@@ -818,7 +818,7 @@ select {
   background: #fff29b;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 640px) { ... }
   .top-bar {
     flex-wrap: wrap;
   }
