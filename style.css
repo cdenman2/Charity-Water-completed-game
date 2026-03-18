@@ -40,28 +40,28 @@ select {
   justify-content: space-between;
   align-items: stretch;
   gap: 16px;
-  padding: 12px 16px 8px;
+  padding: 10px 16px 8px;
   flex-wrap: nowrap;
 }
 
 .brand-box {
-  flex: 0 1 560px;
-  max-width: 560px;
+  flex: 0 1 520px;
+  max-width: 520px;
   background: var(--brand-blue);
   border: 5px solid #118cc5;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
-  padding: 10px 14px;
+  padding: 8px 14px;
 }
 
 .brand-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .logo-wrap {
-  width: 104px;
-  height: 104px;
+  width: 94px;
+  height: 94px;
   flex-shrink: 0;
   background: #fff;
   border: 4px solid #118cc5;
@@ -71,29 +71,29 @@ select {
 }
 
 .logo-svg {
-  width: 82px;
-  height: 82px;
+  width: 74px;
+  height: 74px;
 }
 
 .brand-title {
   color: #07141d;
-  font-size: 2.45rem;
+  font-size: 2.2rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 1px;
 }
 
 .brand-subtitle {
-  margin-top: 6px;
+  margin-top: 4px;
   color: #07141d;
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 800;
 }
 
 .hud {
-  flex: 0 0 440px;
-  width: 440px;
-  max-width: 440px;
+  flex: 0 0 430px;
+  width: 430px;
+  max-width: 430px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -129,14 +129,14 @@ select {
 }
 
 .hud-label {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 900;
   line-height: 1.1;
 }
 
 .hud-value {
   margin-top: 6px;
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   font-weight: 900;
 }
 
@@ -178,9 +178,9 @@ select {
 }
 
 .instruction-panel {
-  width: min(560px, calc(100% - 30px));
-  margin: 0 0 10px 16px;
-  padding: 12px 16px;
+  width: min(520px, calc(100% - 32px));
+  margin: 0 0 8px 16px;
+  padding: 10px 14px;
   background: var(--yellow);
   color: #111;
   border: 4px solid #1e8fff;
@@ -192,7 +192,7 @@ select {
 .game-area {
   position: relative;
   width: 100%;
-  height: 1120px;
+  height: 1140px;
   overflow: hidden;
   border-top: 3px solid rgba(255, 255, 255, 0.55);
   background: linear-gradient(to bottom, #ffdce7 0%, #f5bfd9 22%, #d3d8eb 44%, #88c0ea 56%, #3f97dc 100%);
@@ -200,11 +200,12 @@ select {
 
 .message-box {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 14px;
+  left: 552px;
   transform: none;
-  width: min(520px, calc(100% - 230px));
-  padding: 12px 16px;
+  width: min(420px, calc(100% - 830px));
+  min-width: 240px;
+  padding: 10px 12px;
   background: var(--yellow);
   color: #111;
   border: 4px solid #1e8fff;
@@ -223,11 +224,11 @@ select {
 
 .milestone-box {
   position: absolute;
-  top: 86px;
+  top: 78px;
   left: 16px;
   transform: none;
-  width: min(620px, calc(100% - 40px));
-  padding: 16px 20px;
+  width: min(760px, calc(100% - 32px));
+  padding: 14px 18px;
   background: rgba(255, 201, 7, 0.96);
   color: #111;
   border: 4px solid #111;
@@ -242,7 +243,7 @@ select {
 .difficulty-panel {
   position: absolute;
   right: 18px;
-  top: 116px;
+  top: 104px;
   width: 250px;
   background: rgba(16, 24, 32, 0.84);
   border: 4px solid #ffd400;
@@ -280,7 +281,7 @@ select {
 .desktop-controls {
   position: absolute;
   left: 16px;
-  top: 168px;
+  top: 154px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -317,7 +318,7 @@ select {
 
 .pipe-wrap {
   position: absolute;
-  top: 56px;
+  top: 26px;
   left: 50%;
   transform: translateX(-50%);
   width: min(52%, 680px);
@@ -360,9 +361,9 @@ select {
 .sun {
   position: absolute;
   right: 8%;
-  top: 110px;
-  width: 110px;
-  height: 110px;
+  top: 88px;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
   background: #fff200;
   box-shadow: 0 0 25px rgba(255, 242, 0, 0.35);
@@ -837,16 +838,22 @@ select {
     grid-template-columns: repeat(2, minmax(110px, 1fr));
   }
 
+  .message-box {
+    left: 16px;
+    top: 112px;
+    width: min(520px, calc(100% - 32px));
+  }
+
   .difficulty-panel {
     right: 14px;
-    top: 126px;
+    top: 144px;
   }
 }
 
 @media (max-width: 860px) {
   .difficulty-panel {
     position: absolute;
-    top: 114px;
+    top: 112px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -858,22 +865,20 @@ select {
   }
 
   .desktop-controls {
-    top: 170px;
+    top: 168px;
   }
 
   .message-box {
-    width: min(460px, calc(100% - 34px));
-  }
-
-  .milestone-box {
-    width: min(560px, calc(100% - 34px));
+    top: 56px;
+    left: 16px;
+    width: min(520px, calc(100% - 32px));
   }
 }
 
 @media (max-width: 640px) {
   .top-bar {
     display: grid;
-    grid-template-columns: 112px 1fr;
+    grid-template-columns: 94px 1fr;
     grid-template-areas:
       "brand hud"
       "brand instruction";
@@ -884,10 +889,10 @@ select {
 
   .brand-box {
     grid-area: brand;
-    width: 112px;
-    max-width: 112px;
-    min-width: 112px;
-    padding: 6px;
+    width: 94px;
+    max-width: 94px;
+    min-width: 94px;
+    padding: 5px;
     border-width: 3px;
   }
 
@@ -898,14 +903,14 @@ select {
   }
 
   .logo-wrap {
-    width: 52px;
-    height: 52px;
+    width: 44px;
+    height: 44px;
     border-width: 2px;
   }
 
   .logo-svg {
-    width: 38px;
-    height: 38px;
+    width: 31px;
+    height: 31px;
   }
 
   .brand-text {
@@ -914,15 +919,15 @@ select {
   }
 
   .brand-title {
-    font-size: 0.76rem;
+    font-size: 0.64rem;
     line-height: 1.1;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
   }
 
   .brand-subtitle {
-    margin-top: 3px;
-    font-size: 0.47rem;
-    line-height: 1.15;
+    margin-top: 2px;
+    font-size: 0.4rem;
+    line-height: 1.1;
   }
 
   .hud {
@@ -936,50 +941,51 @@ select {
 
   .hud-box {
     min-height: 58px;
-    padding: 4px 4px;
+    padding: 4px 3px;
     border-width: 3px;
   }
 
   .hud-label {
-    font-size: 0.56rem;
+    font-size: 0.5rem;
   }
 
   .hud-value {
     margin-top: 3px;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
   }
 
   .glasses {
     margin-top: 3px;
-    gap: 3px;
+    gap: 2px;
   }
 
   .glass {
-    width: 13px;
-    height: 20px;
+    width: 12px;
+    height: 18px;
   }
 
   .instruction-panel {
     grid-area: instruction;
     width: 100%;
     margin: 0;
-    padding: 6px 7px;
-    font-size: 0.58rem;
-    line-height: 1.15;
+    padding: 6px 6px;
+    font-size: 0.54rem;
+    line-height: 1.1;
     border-width: 3px;
   }
 
   .game-area {
-    height: 760px;
+    height: 790px;
   }
 
   .message-box {
     top: 6px;
-    left: 122px;
-    width: calc(100% - 128px);
-    padding: 6px 7px;
-    font-size: 0.58rem;
-    line-height: 1.15;
+    left: 104px;
+    width: calc(100% - 110px);
+    min-width: 0;
+    padding: 6px 6px;
+    font-size: 0.54rem;
+    line-height: 1.1;
     border-width: 3px;
   }
 
@@ -993,48 +999,47 @@ select {
     border-width: 3px;
   }
 
-  .difficulty-panel {
-    top: 74px;
+  .mobile-controls {
+    display: flex;
+    position: absolute;
+    top: 76px;
     left: 6px;
+    width: 96px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 39;
+  }
+
+  .mobile-controls .control-btn {
+    width: 100%;
+    min-width: 0;
+    padding: 7px 2px;
+    font-size: 0.54rem;
+  }
+
+  .difficulty-panel {
+    top: 76px;
     right: 6px;
-    width: auto;
+    left: auto;
+    width: 112px;
     transform: none;
     padding: 6px;
     z-index: 38;
   }
 
   .difficulty-label {
-    font-size: 0.66rem;
+    font-size: 0.58rem;
     margin-bottom: 4px;
   }
 
   .difficulty-buttons {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 4px;
   }
 
   .difficulty-btn {
     padding: 7px 2px;
-    font-size: 0.58rem;
-  }
-
-  .mobile-controls {
-    display: flex;
-    position: absolute;
-    top: 122px;
-    left: 6px;
-    right: 6px;
-    width: auto;
-    transform: none;
-    gap: 4px;
-    z-index: 39;
-  }
-
-  .mobile-controls .control-btn {
-    flex: 1;
-    min-width: 0;
-    padding: 7px 2px;
-    font-size: 0.58rem;
+    font-size: 0.54rem;
   }
 
   .desktop-controls {
@@ -1044,21 +1049,21 @@ select {
   .pipe-wrap {
     width: 76%;
     min-width: 0;
-    top: 146px;
+    top: 120px;
   }
 
   .pipe-top {
-    height: 22px;
+    height: 20px;
   }
 
   .pipe-mouth {
-    height: 18px;
+    height: 16px;
   }
 
   .sun {
-    top: 144px;
-    width: 48px;
-    height: 48px;
+    top: 118px;
+    width: 44px;
+    height: 44px;
   }
 
   .ocean-band {
