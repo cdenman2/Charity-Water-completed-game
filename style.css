@@ -315,7 +315,7 @@ select {
 
 .pipe-wrap {
   position: absolute;
-  top: 18px;
+  top: 84px;
   left: 50%;
   transform: translateX(-50%);
   width: min(52%, 680px);
@@ -358,7 +358,7 @@ select {
 .sun {
   position: absolute;
   right: 8%;
-  top: 76px;
+  top: 142px;
   width: 104px;
   height: 104px;
   border-radius: 50%;
