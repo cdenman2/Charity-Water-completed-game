@@ -19,6 +19,8 @@ const finalScore = document.getElementById("finalScore");
 const finalPurified = document.getElementById("finalPurified");
 const confettiContainer = document.getElementById("confettiContainer");
 const levelBanner = document.getElementById("levelBanner");
+const reservoir = document.getElementById("reservoir");
+const pipeMouth = document.querySelector(".pipe-mouth");
 
 const startBtn = document.getElementById("startBtn");
 const pauseBtn = document.getElementById("pauseBtn");
@@ -45,27 +47,27 @@ const difficultyModes = {
     startingLives: 5,
     maxDirty: 5,
     baseGoal: 10,
-    spawnRate: 1200,
-    dropSpeed: 0.78,
-    pollutedChance: 0.24
+    spawnRate: 1320,
+    dropSpeed: 0.72,
+    pollutedChance: 0.21
   },
   normal: {
     label: "Normal",
-    startingLives: 4,
-    maxDirty: 4,
+    startingLives: 5,
+    maxDirty: 5,
     baseGoal: 12,
-    spawnRate: 950,
-    dropSpeed: 1.02,
-    pollutedChance: 0.32
+    spawnRate: 1120,
+    dropSpeed: 0.88,
+    pollutedChance: 0.28
   },
   hard: {
     label: "Hard",
-    startingLives: 3,
-    maxDirty: 3,
+    startingLives: 5,
+    maxDirty: 5,
     baseGoal: 14,
-    spawnRate: 720,
-    dropSpeed: 1.28,
-    pollutedChance: 0.42
+    spawnRate: 920,
+    dropSpeed: 1.02,
+    pollutedChance: 0.35
   }
 };
 
@@ -96,32 +98,37 @@ let spawnIntervalId = null;
 let animationFrameId = null;
 let messageTimeoutId = null;
 let milestoneTimeoutId = null;
+let gullTimeoutId = null;
 let drops = [];
 
 let audioCtx = null;
 let masterGain = null;
-let waterGain = null;
-let waterFilter = null;
-let waterSource = null;
+let oceanGain = null;
+let oceanFilter = null;
+let oceanSource = null;
 
 function getLevelGoal() {
-  return currentDifficulty.baseGoal + (level - 1) * 3;
+  return currentDifficulty.baseGoal + (level - 1) * 2;
 }
 
 function getSpawnRate() {
-  return Math.max(340, currentDifficulty.spawnRate - (level - 1) * 35);
+  return Math.max(560, currentDifficulty.spawnRate - (level - 1) * 18);
 }
 
 function getDropSpeed() {
-  return currentDifficulty.dropSpeed + (level - 1) * 0.14;
+  return currentDifficulty.dropSpeed + (level - 1) * 0.06;
 }
 
 function getDropStartY() {
-  return window.innerWidth <= 640 ? 390 : 200;
+  const mouthRect = pipeMouth.getBoundingClientRect();
+  const gameRect = gameArea.getBoundingClientRect();
+  return mouthRect.top - gameRect.top + mouthRect.height - 6;
 }
 
 function getReservoirCollisionY() {
-  return window.innerWidth <= 640 ? gameArea.clientHeight - 250 : gameArea.clientHeight - 360;
+  const reservoirRect = reservoir.getBoundingClientRect();
+  const gameRect = gameArea.getBoundingClientRect();
+  return reservoirRect.top - gameRect.top + (window.innerWidth <= 640 ? 10 : 12);
 }
 
 function updateDisplays() {
@@ -235,20 +242,40 @@ function clearDrops() {
 }
 
 function setDifficulty(modeKey) {
-  if (running) return;
+  if (running || levelTransition) return;
 
   currentDifficultyKey = modeKey;
-  currentDifficulty = difficultyModes[modeKey];
+  currentDifficulty = difficultyModes[currentDifficultyKey];
 
   document.querySelectorAll(".difficulty-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.mode === modeKey);
   });
 
-  resetGame(false);
-  showMessage(
-    `${currentDifficulty.label} mode selected. Press START to begin.`,
-    "success"
-  );
+  score = 0;
+  level = 1;
+  lives = currentDifficulty.startingLives;
+  dirtyInTank = 0;
+  reservoirCurrent = 0;
+  drinkTankProgress = 0;
+  purifiedCount = 0;
+  shownMilestones = [];
+
+  clearInterval(spawnIntervalId);
+  cancelAnimationFrame(animationFrameId);
+  clearDrops();
+  confettiContainer.innerHTML = "";
+
+  gameOver = false;
+  running = false;
+  levelTransition = false;
+
+  hideLevelBanner();
+  milestoneBox.classList.add("hidden");
+  gameOverPanel.classList.add("hidden");
+  pauseAmbientSound();
+
+  updateDisplays();
+  showMessage(`${currentDifficulty.label} mode selected. Press START to begin.`, "success");
 }
 
 function createDrop() {
@@ -267,16 +294,17 @@ function createDrop() {
   const laneWidth = Math.min(gameWidth * 0.52, 680);
   const laneLeft = (gameWidth - laneWidth) / 2;
   const startX = laneLeft + Math.random() * Math.max(laneWidth - 42, 20);
+  const startY = getDropStartY();
 
   drop.style.left = `${startX}px`;
-  drop.style.top = `${getDropStartY()}px`;
+  drop.style.top = `${startY}px`;
   dropsContainer.appendChild(drop);
 
   const dropData = {
     element: drop,
     polluted,
     x: startX,
-    y: getDropStartY(),
+    y: startY,
     speed: getDropSpeed(),
     handled: false
   };
@@ -350,7 +378,7 @@ function animateDrops() {
     drop.y += drop.speed;
     drop.element.style.top = `${drop.y}px`;
 
-    if (drop.y >= reservoirTop) {
+    if (drop.y + drop.element.offsetHeight >= reservoirTop) {
       handleDropReachedReservoir(drop);
     }
   }
@@ -367,6 +395,7 @@ function completeLevel() {
   clearDrops();
 
   spawnBigConfetti();
+  playBigSplashSound();
   playWinSound();
   drinkTankProgress += 1;
 
@@ -405,16 +434,25 @@ function completeLevel() {
   }, 1800);
 }
 
-function startGame() {
+async function startGame() {
   if (running || gameOver || levelTransition) return;
 
   initializeAudio();
-  resumeWaterSound();
+
+  if (audioCtx && audioCtx.state === "suspended") {
+    await audioCtx.resume();
+  }
+
+  resumeAmbientSound();
 
   running = true;
   showMessage(
     `${currentDifficulty.label} mode started. Catch the green polluted drops before they enter the reservoir.`
   );
+
+  clearInterval(spawnIntervalId);
+  cancelAnimationFrame(animationFrameId);
+
   spawnIntervalId = setInterval(createDrop, getSpawnRate());
   animateDrops();
 }
@@ -425,7 +463,7 @@ function pauseGame() {
   running = false;
   clearInterval(spawnIntervalId);
   cancelAnimationFrame(animationFrameId);
-  pauseWaterSound();
+  pauseAmbientSound();
   showMessage("Game paused.");
 }
 
@@ -440,9 +478,11 @@ function resetGame(showResetMessage = true) {
   clearDrops();
   confettiContainer.innerHTML = "";
 
+  currentDifficulty = difficultyModes[currentDifficultyKey];
+
   score = 0;
   level = 1;
-  lives = difficultyModes[currentDifficultyKey].startingLives;
+  lives = currentDifficulty.startingLives;
   dirtyInTank = 0;
   reservoirCurrent = 0;
   drinkTankProgress = 0;
@@ -452,13 +492,12 @@ function resetGame(showResetMessage = true) {
   hideLevelBanner();
   milestoneBox.classList.add("hidden");
   gameOverPanel.classList.add("hidden");
-  pauseWaterSound();
+  pauseAmbientSound();
 
-  currentDifficulty = difficultyModes[currentDifficultyKey];
   updateDisplays();
 
   if (showResetMessage) {
-    showMessage("Game reset. Select a difficulty and press START.");
+    showMessage(`Game reset. ${currentDifficulty.label} mode is ready. Press START.`, "success");
   }
 }
 
@@ -469,7 +508,7 @@ function endGame(wonGame) {
   clearInterval(spawnIntervalId);
   cancelAnimationFrame(animationFrameId);
   clearDrops();
-  pauseWaterSound();
+  pauseAmbientSound();
 
   finalDifficulty.textContent = currentDifficulty.label;
   finalLives.textContent = lives;
@@ -505,47 +544,66 @@ function initializeAudio() {
   masterGain.gain.value = 0.95;
   masterGain.connect(audioCtx.destination);
 
-  waterGain = audioCtx.createGain();
-  waterGain.gain.value = 0.09;
+  oceanGain = audioCtx.createGain();
+  oceanGain.gain.value = 0.0;
 
-  waterFilter = audioCtx.createBiquadFilter();
-  waterFilter.type = "lowpass";
-  waterFilter.frequency.value = 950;
-  waterFilter.Q.value = 0.6;
+  oceanFilter = audioCtx.createBiquadFilter();
+  oceanFilter.type = "lowpass";
+  oceanFilter.frequency.value = 700;
+  oceanFilter.Q.value = 0.3;
 
-  const bufferSize = audioCtx.sampleRate * 2;
+  const bufferSize = audioCtx.sampleRate * 3;
   const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
   const output = noiseBuffer.getChannelData(0);
 
   for (let i = 0; i < bufferSize; i++) {
-    output[i] = (Math.random() * 2 - 1) * 0.38;
+    output[i] = (Math.random() * 2 - 1) * 0.55;
   }
 
-  waterSource = audioCtx.createBufferSource();
-  waterSource.buffer = noiseBuffer;
-  waterSource.loop = true;
+  oceanSource = audioCtx.createBufferSource();
+  oceanSource.buffer = noiseBuffer;
+  oceanSource.loop = true;
 
-  waterSource.connect(waterFilter);
-  waterFilter.connect(waterGain);
-  waterGain.connect(masterGain);
-  waterSource.start();
+  oceanSource.connect(oceanFilter);
+  oceanFilter.connect(oceanGain);
+  oceanGain.connect(masterGain);
+
+  oceanSource.start(0);
 }
 
-function resumeWaterSound() {
-  if (!audioCtx) return;
-  if (audioCtx.state === "suspended") {
-    audioCtx.resume();
-  }
-  if (waterGain) {
-    waterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-    waterGain.gain.setTargetAtTime(0.09, audioCtx.currentTime, 0.08);
-  }
+function resumeAmbientSound() {
+  if (!audioCtx || !oceanGain) return;
+
+  oceanGain.gain.cancelScheduledValues(audioCtx.currentTime);
+  oceanGain.gain.setValueAtTime(oceanGain.gain.value, audioCtx.currentTime);
+  oceanGain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.25);
+
+  scheduleSeagull();
 }
 
-function pauseWaterSound() {
-  if (!audioCtx || !waterGain) return;
-  waterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-  waterGain.gain.setTargetAtTime(0.0, audioCtx.currentTime, 0.08);
+function pauseAmbientSound() {
+  if (gullTimeoutId) {
+    clearTimeout(gullTimeoutId);
+    gullTimeoutId = null;
+  }
+
+  if (!audioCtx || !oceanGain) return;
+
+  oceanGain.gain.cancelScheduledValues(audioCtx.currentTime);
+  oceanGain.gain.setValueAtTime(oceanGain.gain.value, audioCtx.currentTime);
+  oceanGain.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.2);
+}
+
+function scheduleSeagull() {
+  if (!running || !audioCtx) return;
+
+  const delay = 2800 + Math.random() * 4200;
+  gullTimeoutId = setTimeout(() => {
+    if (running) {
+      playSeagullSound();
+      scheduleSeagull();
+    }
+  }, delay);
 }
 
 function playTone(type, frequency, duration, volume, secondFrequency = null) {
@@ -570,6 +628,14 @@ function playTone(type, frequency, duration, volume, secondFrequency = null) {
 
   osc.start(now);
   osc.stop(now + duration);
+}
+
+function playSeagullSound() {
+  if (!audioCtx) return;
+
+  playTone("sine", 980, 0.14, 0.025, 1320);
+  setTimeout(() => playTone("sine", 1240, 0.12, 0.022, 900), 90);
+  setTimeout(() => playTone("sine", 880, 0.15, 0.02, 1280), 180);
 }
 
 function playSplashSound() {
@@ -603,6 +669,39 @@ function playSplashSound() {
   noiseSource.stop(now + 0.35);
 
   playTone("triangle", 420, 0.18, 0.05, 150);
+}
+
+function playBigSplashSound() {
+  if (!audioCtx) return;
+
+  const now = audioCtx.currentTime;
+
+  const noiseBuffer = audioCtx.createBuffer(1, Math.floor(audioCtx.sampleRate * 0.7), audioCtx.sampleRate);
+  const data = noiseBuffer.getChannelData(0);
+  for (let i = 0; i < data.length; i++) {
+    data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+  }
+
+  const source = audioCtx.createBufferSource();
+  source.buffer = noiseBuffer;
+
+  const lowpass = audioCtx.createBiquadFilter();
+  lowpass.type = "lowpass";
+  lowpass.frequency.value = 900;
+
+  const gain = audioCtx.createGain();
+  gain.gain.setValueAtTime(0.42, now);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.62);
+
+  source.connect(lowpass);
+  lowpass.connect(gain);
+  gain.connect(masterGain);
+
+  source.start(now);
+  source.stop(now + 0.7);
+
+  playTone("triangle", 210, 0.22, 0.08, 120);
+  setTimeout(() => playTone("sine", 340, 0.18, 0.05, 180), 60);
 }
 
 function playCollectSound() {
@@ -643,5 +742,5 @@ window.addEventListener("resize", () => {
   updateDisplays();
 });
 
-updateDisplays();
+setDifficulty("easy");
 showMessage("Select a difficulty, then press START to protect the reservoir.");
