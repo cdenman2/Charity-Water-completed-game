@@ -997,8 +997,9 @@ select {
     border-width: 3px;
   }
 
+  /* MOVED UP ABOUT ONE BOX HEIGHT */
   .difficulty-panel {
-    top: 76px;
+    top: 18px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
@@ -1022,11 +1023,10 @@ select {
     font-size: 0.54rem;
   }
 
-  /* FIXED MOBILE OVERLAP */
   .mobile-controls {
     display: flex;
     position: absolute;
-    top: 126px;
+    top: 68px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
@@ -1050,7 +1050,7 @@ select {
   .pipe-wrap {
     width: 76%;
     min-width: 0;
-    top: 170px;
+    top: 126px;
   }
 
   .pipe-top {
@@ -1062,7 +1062,7 @@ select {
   }
 
   .sun {
-    top: 164px;
+    top: 120px;
     width: 44px;
     height: 44px;
   }
