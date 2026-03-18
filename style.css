@@ -1003,7 +1003,7 @@ select {
 
   .difficulty-panel {
     position: absolute;
-    top: 64px;
+    top: 50px;
     left: 50%;
     right: auto;
     width: min(300px, calc(100% - 12px));
